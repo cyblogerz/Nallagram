@@ -100,15 +100,6 @@ class _NavState extends State<Nav> {
             color: Colors.black,
             size: 25.0,
           ),
-
-          // BottomNavigationBarItem(icon: ),
-          // label: 'Explore',
-          // BottomNavigationBarItem(icon:
-          // label: 'Create'),
-          // BottomNavigationBarItem(icon:
-          // label: 'Activity'),
-          // BottomNavigationBarItem(icon:
-          // label: 'Profile'),
         ],
         index: _selectedIndex,
         onTap: _onItemTap,
@@ -282,58 +273,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
 
-                  // ClipRRect(
-                  //   borderRadius:BorderRadius.circular(20.0),
-                  //   child: Image.network(
-                  //     url,
-                  //     width: double.infinity,
-                  //     fit: BoxFit.fitWidth,
-                  //
-                  //   ),
-                  // ),
-
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: <Widget>[
-                  //     //like,comment,share , bookmark
-                  //
-                  //     Row(
-                  //       children: <Widget>[
-                  //         LikeButton(
-                  //           likeCount: like,
-                  //         ),
-                  //
-                  //         IconButton(
-                  //           icon: FaIcon(FontAwesomeIcons.comment),
-                  //           onPressed: () {
-                  //             _commentButtomPressed();
-                  //           },
-                  //         ),
-                  //         // SizedBox(
-                  //         //   width: 5.0,
-                  //         // ),
-                  //         Text(
-                  //           '$comments ',
-                  //           style: TextStyle(
-                  //             fontSize: 15.0,
-                  //             color: Colors.grey,
-                  //           ),
-                  //         )
-                  //       ],
-                  //     ),
-                  //     IconButton(
-                  //       icon: Icon(
-                  //         Icons.bookmark_border,
-                  //         size: 30.0,
-                  //       ),
-                  //       onPressed: () {
-                  //         Toast.show("Bookmark added!", context,
-                  //             duration: Toast.LENGTH_SHORT,
-                  //             gravity: Toast.BOTTOM);
-                  //       },
-                  //     )
-                  //   ],
-                  // ),
+                 
                 ],
               ),
             ),
@@ -1179,8 +1119,4 @@ class Profile extends StatelessWidget {
   }
 }
 
-//         Icon(Icons.home, size: 30.0),
-//         Icon(Icons.search, size: 30.0),
-//         Icon(Icons.create_outlined, size: 30.0),
-//         Icon(Icons.mood_sharp, size: 30.0),
-//         Icon(Icons.person_outline, size: 30.0),
+
