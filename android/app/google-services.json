@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "243168622483",
+    "project_id": "nallagram-ac",
+    "storage_bucket": "nallagram-ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243168622483:android:babba9cf0993aa73299a66",
+        "android_client_info": {
+          "package_name": "com.cyblogerz.nallagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243168622483-fs92rucd9k7f40sd2i7la5acgsk8kv9k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi1aYB6DP5z48KrldSk3TMPF7R-USVQ-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243168622483-fs92rucd9k7f40sd2i7la5acgsk8kv9k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
