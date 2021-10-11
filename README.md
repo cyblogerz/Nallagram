@@ -16,7 +16,6 @@ This repository is still under development and I will continue to add more featu
  * Photo feed based on other user uploads
  * Post photo posts from camera or gallery
    * Like posts
-      * View all likes on a post
    * Comment on posts
         * View all comments on a post
  
@@ -34,17 +33,15 @@ This repository is still under development and I will continue to add more featu
 
 
 <p>
+  ![Screenshot_2021-10-11-20-26-30-26_d470f78b2c78f2c7c8b60a8f20bc9f3c](https://user-images.githubusercontent.com/74711322/136813482-124a01ee-e0ee-4294-b28a-0e43d3f13d2c.jpg)
+
 <img src="https://user-images.githubusercontent.com/35039342/55468409-ef956b80-5620-11e9-9906-7e8ca89b4b49.png" alt="feed example" width = "400" >
-<img src="https://user-images.githubusercontent.com/35039342/55468436-fa500080-5620-11e9-8475-28f291c4b1f6.png" alt="upload photo example"width = "400" >
-<img src="https://user-images.githubusercontent.com/35039342/55468489-1a7fbf80-5621-11e9-81d5-66d0535e0cde.png" alt="go to a profile from feed" width = "400">
-<img src="https://user-images.githubusercontent.com/35039342/55468561-4a2ec780-5621-11e9-806c-69861f6bee32.png" alt="edit profile example" width = "400" >
-<img src="https://user-images.githubusercontent.com/35039342/55468603-5b77d400-5621-11e9-9ca7-5f4f421f400f.png" alt="comment and activity feed example" width = "400">
-  
-<img src="https://user-images.githubusercontent.com/35039342/55468625-6a5e8680-5621-11e9-8116-5561bcf61d1b.png" alt="comment and activity feed example" width = "400">
-<img src="https://user-images.githubusercontent.com/35039342/55468657-7a766600-5621-11e9-9e52-d36c1cc623b2.png" alt="comment and activity feed example" width = "400">
-<img src="https://user-images.githubusercontent.com/35039342/55468682-89f5af00-5621-11e9-9342-6993058350ad.png" alt="comment and activity feed example" width = "400">
-<img src="https://user-images.githubusercontent.com/35039342/55468729-a09c0600-5621-11e9-9f15-c20d87fce2a1.png" alt="comment and activity feed example" width = "400">
-<img src="https://user-images.githubusercontent.com/35039342/55468755-adb8f500-5621-11e9-99fc-92ba57dcb268.png" alt="comment and activity feed example" width = "400">
+![Screenshot_2021-10-11-20-27-05-25_d470f78b2c78f2c7c8b60a8f20bc9f3c](https://user-images.githubusercontent.com/74711322/136813572-e3b76197-7368-4828-b9a2-9d69a1d6b430.jpg)
+
+![Screenshot_2021-10-11-20-26-48-80_d470f78b2c78f2c7c8b60a8f20bc9f3c](https://user-images.githubusercontent.com/74711322/136813561-60ab2112-0ccc-4323-b970-cf7d6826409d.jpg)
+![Screenshot_2021-10-11-20-27-10-43_d470f78b2c78f2c7c8b60a8f20bc9f3c](https://user-images.githubusercontent.com/74711322/136813647-42e59a40-e97b-4118-8cb5-50f3484867c3.jpg)
+![Screenshot_2021-10-11-20-27-26-80_d470f78b2c78f2c7c8b60a8f20bc9f3c](https://user-images.githubusercontent.com/74711322/136813664-dc0615cc-9c2e-42ab-a96e-eff54ea46981.jpg)
+![Screenshot_2021-10-11-20-29-10-15_d470f78b2c78f2c7c8b60a8f20bc9f3c](https://user-images.githubusercontent.com/74711322/136813691-d7214997-6f65-410b-98fd-4a7094a84810.jpg)
 
 </p>
 
