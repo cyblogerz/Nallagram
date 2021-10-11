@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'nav.dart';
+import '../nav.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login';

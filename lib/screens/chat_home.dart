@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:nallagram/chat_model.dart';
+import 'package:nallagram/screens/chat_model.dart';
 import 'group_chat.dart';
 
 final _firestore = FirebaseFirestore.instance;

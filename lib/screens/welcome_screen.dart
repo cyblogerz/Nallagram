@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nallagram/register_screen.dart';
+import 'package:nallagram/screens/register_screen.dart';
 import 'login_screen.dart';
 
 class Welcome extends StatefulWidget {

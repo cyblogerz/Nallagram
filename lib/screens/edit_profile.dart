@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:nallagram/profile_upload.dart';
+import 'package:nallagram/screens/profile_upload.dart';
 import 'profile_upload.dart';
 
 final _auth = FirebaseAuth.instance;

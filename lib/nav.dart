@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'package:nallagram/explore_page.dart';
-import 'activity_page.dart';
-import 'package:nallagram/home.dart';
+import 'package:nallagram/screens/explore_page.dart';
+import 'screens/activity_page.dart';
+import 'package:nallagram/screens/home.dart';
 // import 'package:cached_network_image/cached_network_image.dart';
-import 'create_page.dart';
-import 'chat_home.dart';
-import 'profile.dart';
+import 'screens/create_page.dart';
+import 'screens/chat_home.dart';
+import 'screens/profile.dart';
 
 final _auth = FirebaseAuth.instance;
 // final FirebaseMessaging _firebasemessaging = FirebaseMessaging.instance;
@@ -76,7 +76,7 @@ class _NavState extends State<Nav> {
         elevation: 0.0,
         backgroundColor: Colors.white,
         title: Text(
-          'DigiCupid',
+          'Nallagram',
           style: TextStyle(
             fontFamily: 'Metropolis',
             color: Colors.black,

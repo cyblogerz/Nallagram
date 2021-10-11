@@ -4,21 +4,29 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:nallagram/chat_model.dart';
-// import 'package:nallagram/edit_profile.dart';
-import 'package:nallagram/postView_model.dart';
-import 'package:nallagram/storyview.dart';
+import 'package:nallagram/screens/edit_profile.dart';
+import 'package:nallagram/screens/postView_model.dart';
+import 'package:nallagram/screens/storyview.dart';
+
+import 'profile_upload.dart';
 
 //Profile photo - squircle --> posts no | Followers no | Following no |
 //Name o <em>Position</em>
 //About
 final _auth = FirebaseAuth.instance;
 final _store = FirebaseFirestore.instance;
-List<dynamic> followinglist = [];
-int cufollowing;
 bool _persposts = true;
-int followers;
-List<dynamic> followlist = [];
+
+void getProfileData() async {
+  final info = await _store.collection('users').doc(loggedInUser.uid).get();
+  Map data = info.data();
+  followers = data['followers'];
+  following = data['following'];
+  descr = data['descr'];
+  posts = data['posts'];
+  // userId = data['userid'];
+  print(data);
+}
 
 void getCurrentUser() {
   try {
@@ -32,54 +40,24 @@ void getCurrentUser() {
   }
 }
 
-void followData(userId) async {
-  var userDat = await _store.collection('users').doc(userId).get();
-  var currentDat =
-      await _store.collection('users').doc(loggedInUser.uid.toString()).get();
-  followinglist = currentDat['followinglist'];
-  cufollowing = currentDat['following'];
-  var data = userDat.data();
-  followlist = data['followerlist'];
-  followers = data['followers'];
-}
-
 // User loggedInUser;
 // var data;
-// int posts;
-// // String userId;
-// var descr;
-// int followers;
-// int following;
+int posts;
+// String userId;
+var descr;
+int followers;
+int following;
 
-class UserProfile extends StatefulWidget {
-  final posts;
-  final descr;
-  final photoUrl;
-  final name;
-  final userid;
-  String followState = 'Follow';
-  int followers;
-  int following;
-
-  UserProfile(
-      {@required this.posts,
-      @required this.photoUrl,
-      @required this.descr,
-      @required this.name,
-      @required this.followers,
-      @required this.following,
-      @required this.userid});
-
+class Profile extends StatefulWidget {
   @override
-  State<UserProfile> createState() => _UserProfileState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _UserProfileState extends State<UserProfile> {
+class _ProfileState extends State<Profile> {
   @override
   void initState() {
     super.initState();
     getCurrentUser();
-    followData(widget.userid);
   }
 
   @override
@@ -94,23 +72,36 @@ class _UserProfileState extends State<UserProfile> {
               Padding(
                 padding: const EdgeInsets.only(right: 20.0, bottom: 10.0),
                 child: Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                      color: Colors.red.shade100,
-                      borderRadius: BorderRadius.circular(25),
-                      image: DecorationImage(
-                        image: CachedNetworkImageProvider(widget.photoUrl),
-                        fit: BoxFit.cover,
-                      )),
-                ),
+                    width: 80,
+                    height: 80,
+                    decoration: rimage != null
+                        ? BoxDecoration(
+                            color: Colors.red.shade100,
+                            borderRadius: BorderRadius.circular(25),
+                          )
+                        : BoxDecoration(
+                            color: Colors.red.shade100,
+                            borderRadius: BorderRadius.circular(25),
+                            image: DecorationImage(
+                              image: CachedNetworkImageProvider(
+                                  loggedInUser.photoURL),
+                              fit: BoxFit.cover,
+                            )),
+                    child: rimage != null
+                        ? Image.file(
+                            rimage,
+                            width: 80,
+                            height: 80,
+                            fit: BoxFit.cover,
+                          )
+                        : Container()),
               ),
               Column(
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5.0),
                     child: Text(
-                      '${widget.posts}',
+                      '$posts',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -136,7 +127,7 @@ class _UserProfileState extends State<UserProfile> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5.0),
                     child: Text(
-                      '${widget.followers}',
+                      '$followers',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -162,7 +153,7 @@ class _UserProfileState extends State<UserProfile> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 4.0),
                     child: Text(
-                      '${widget.following}',
+                      '$following',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -180,7 +171,7 @@ class _UserProfileState extends State<UserProfile> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              widget.name.toUpperCase(),
+              loggedInUser.displayName.toUpperCase(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Metropolis',
@@ -189,9 +180,14 @@ class _UserProfileState extends State<UserProfile> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
-            child: Container(
-                // constraints: BoxConstraints(maxWidth: ),
-                child: Text('${widget.descr}')),
+            child: RichText(
+              overflow: TextOverflow.clip,
+              strutStyle: StrutStyle(fontSize: 12.0),
+              text: TextSpan(
+                  style:
+                      TextStyle(color: Colors.black, fontFamily: 'Metropolis'),
+                  text: descr),
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -200,72 +196,22 @@ class _UserProfileState extends State<UserProfile> {
                   child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: OutlinedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        followlist.contains(loggedInUser.uid)
-                            ? Colors.white
-                            : Colors.blue,
-                      ),
-                    ),
-                    onPressed: () async {
-                      if (!followlist.contains(loggedInUser.uid.toString())) {
-                        setState(() {
-                          // widget.followState = 'Unfollow';
-                          followers += 1;
-                          widget.followers = followers;
-                          followlist.add(loggedInUser.uid.toString());
-                          cufollowing += 1;
-                        });
-                      } else {
-                        setState(() {
-                          // widget.followState = 'Follow';
-                          followers -= 1;
-                          widget.followers = followers;
-                          followlist.remove(loggedInUser.uid.toString());
-                          cufollowing -= 1;
-                        });
-                      }
-                      _store
-                          .collection('users')
-                          .doc(widget.userid)
-                          .update({'followers': followers});
-
-                      _store
-                          .collection('users')
-                          .doc(widget.userid)
-                          .update({'followerlist': followlist});
-
-                      _store.collection('users').doc(loggedInUser.uid).update({
-                        'followinglist': followlist,
-                      });
-                      _store
-                          .collection('users')
-                          .doc(loggedInUser.uid.toString())
-                          .update({'following': cufollowing});
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => EditPage()));
                     },
                     child: Text(
-                      followlist.contains(loggedInUser.uid.toString())
-                          ? 'Unfollow'
-                          : 'Follow',
-                      style: TextStyle(
-                          color:
-                              followlist.contains(loggedInUser.uid.toString())
-                                  ? Colors.black
-                                  : Colors.white),
+                      'Edit profile',
+                      style: TextStyle(color: Colors.black),
                     )),
               )),
               SizedBox(width: 10),
               Expanded(
                   child: Container(
                 child: OutlinedButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return PmScreen(selectedUser: widget.userid);
-                      }));
-                    },
+                    onPressed: () {},
                     child: Text(
-                      'Message',
+                      'Settings',
                       style: TextStyle(color: Colors.black),
                     )),
               )),
@@ -284,36 +230,34 @@ class _UserProfileState extends State<UserProfile> {
           //     ),
           //   ],
           // ),
-          // SingleChildScrollView(
-          //   scrollDirection: Axis.horizontal,
-          //   child: Row(
-          //     children: <Widget>[
-          //       Highlight(
-          //           name: 'Github',
-          //           url:
-          //               'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'),
-          //       Highlight(
-          //           name: 'LinkedIn',
-          //           url:
-          //               'https://cdn2.iconfinder.com/data/icons/simple-social-media-shadow/512/14-512.png'),
-          //       Highlight(
-          //           name: 'LinkedIn',
-          //           url:
-          //               'https://cdn2.iconfinder.com/data/icons/simple-social-media-shadow/512/14-512.png'),
-          //       Highlight(
-          //           name: 'LinkedIn',
-          //           url:
-          //               'https://cdn2.iconfinder.com/data/icons/simple-social-media-shadow/512/14-512.png'),
-          //       Highlight(
-          //           name: 'LinkedIn',
-          //           url:
-          //               'https://cdn2.iconfinder.com/data/icons/simple-social-media-shadow/512/14-512.png'),
-          //     ],
-          //   ),
-          // ),
-          ProfilePosts(
-            userid: widget.userid,
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: <Widget>[
+                Highlight(
+                    name: 'Github',
+                    url:
+                        'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'),
+                Highlight(
+                    name: 'LinkedIn',
+                    url:
+                        'https://cdn2.iconfinder.com/data/icons/simple-social-media-shadow/512/14-512.png'),
+                Highlight(
+                    name: 'Dribbble',
+                    url:
+                        'https://cdn.freebiesupply.com/logos/large/2x/dribbble-icon-1-logo-png-transparent.png'),
+                Highlight(
+                    name: 'Reddit',
+                    url:
+                        'https://www.redditinc.com/assets/images/site/reddit-logo.png'),
+                Highlight(
+                    name: 'Quora',
+                    url:
+                        'https://www.shareicon.net/data/128x128/2015/07/21/72869_quora_512x512.png'),
+              ],
+            ),
           ),
+          ProfilePosts(),
         ],
       ),
     );
@@ -341,9 +285,6 @@ class _HighlightsState extends State<Highlights> {
 }
 
 class ProfilePosts extends StatefulWidget {
-  final userid;
-
-  ProfilePosts({@required this.userid});
   @override
   _ProfilePostsState createState() => _ProfilePostsState();
 }
@@ -440,9 +381,7 @@ class _ProfilePostsState extends State<ProfilePosts> {
               ),
             ],
           ),
-          _persposts
-              ? ProfilePostsStream(userid: widget.userid)
-              : Expanded(child: Tagged()),
+          _persposts ? ProfilePostsStream() : Expanded(child: Tagged()),
         ],
       ),
     );
@@ -455,21 +394,22 @@ class ImagePost extends StatelessWidget {
   ImagePost({@required this.url});
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => POstView(url)));
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(32),
-          color: Colors.red.shade100,
-          image: DecorationImage(
-              image: CachedNetworkImageProvider(url), fit: BoxFit.cover),
+    if (isMe) {
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => POstView(url)));
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(32),
+            color: Colors.red.shade100,
+            image: DecorationImage(
+                image: CachedNetworkImageProvider(url), fit: BoxFit.cover),
+          ),
         ),
-      ),
-    );
-
+      );
+    }
     // else {
     //     return Padding(
     //       padding: const EdgeInsets.all(8.0),
@@ -518,16 +458,12 @@ class ImagePost extends StatelessWidget {
 }
 
 class ProfilePostsStream extends StatelessWidget {
-  final userid;
-
-  ProfilePostsStream({@required this.userid});
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: _store
           .collection('users')
-          .doc(userid)
+          .doc(loggedInUser.uid)
           .collection('posts')
           .snapshots(),
       builder: (context, snapshot) {
@@ -542,7 +478,7 @@ class ProfilePostsStream extends StatelessWidget {
         final posts = snapshot.data.docs.reversed;
 
         for (var post in posts) {
-          if (post['userid'] == userid) {
+          if (post['userid'] == loggedInUser.uid) {
             final image = post['url'];
             final imagePost = ImagePost(
               url: image,
@@ -551,27 +487,17 @@ class ProfilePostsStream extends StatelessWidget {
           }
         }
         return Expanded(
-          child: ImagePosts.isEmpty
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'No photos yet',
-                      style: TextStyle(fontFamily: 'Metropolis'),
-                    )
-                  ],
-                )
-              : Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
-                  child: GridView.count(
-                    crossAxisSpacing: 10.0,
-                    mainAxisSpacing: 10.0,
-                    crossAxisCount: 3,
-                    children: ImagePosts,
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                  ),
-                ),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: GridView.count(
+              crossAxisCount: 3,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              children: ImagePosts,
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+            ),
+          ),
         );
       },
     );
@@ -581,14 +507,10 @@ class ProfilePostsStream extends StatelessWidget {
 class Tagged extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          'No photos yet',
-          style: TextStyle(fontFamily: 'Metropolis'),
-        )
-      ],
+    return Container(
+      child: Column(
+        children: <Widget>[Text('No photos yet')],
+      ),
     );
   }
 }
@@ -647,7 +569,7 @@ class _HighlightState extends State<Highlight> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(1.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Container(
                       width: 30,
                       decoration: BoxDecoration(

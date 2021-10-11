@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:nallagram/profilelist_page.dart';
+import 'package:nallagram/screens/profilelist_page.dart';
 import 'dart:math';
 import 'package:toast/toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:nallagram/postView_model.dart';
+import 'package:nallagram/screens/postView_model.dart';
 
 final _store = FirebaseFirestore.instance;
 

@@ -3,15 +3,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:nallagram/create_page.dart';
-import 'package:nallagram/nav.dart';
-import 'package:nallagram/profile.dart';
-import 'package:nallagram/storyview.dart';
+// import 'package:nallagram/screens/create_page.dart';
+// import 'package:nallagram/nav.dart';
+// import 'package:nallagram/screens/profile.dart';
+import 'package:nallagram/screens/storyview.dart';
 import 'package:like_button/like_button.dart';
 import 'commentspage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'data.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
+// import '../data.dart';
 
 final _firestore = FirebaseFirestore.instance;
 
