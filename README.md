@@ -34,18 +34,24 @@ This repository is still under development and I will continue to add more featu
 
 <p>
 <img src="https://user-images.githubusercontent.com/74711322/136813482-124a01ee-e0ee-4294-b28a-0e43d3f13d2c.jpg" alt="feed example" width = "400">&ensp;
+  <br>
   
   
-<img src="https://user-images.githubusercontent.com/74711322/136813572-e3b76197-7368-4828-b9a2-9d69a1d6b430.jpg" alt="feed example" width = "400" >
+<img src="https://user-images.githubusercontent.com/74711322/136813572-e3b76197-7368-4828-b9a2-9d69a1d6b430.jpg" alt="feed example" width = "400" >&ensp;
+  <br>
   
-<img src="https://user-images.githubusercontent.com/74711322/136813561-60ab2112-0ccc-4323-b970-cf7d6826409d.jpg" alt="feed example" width = "400" >
+<img src="https://user-images.githubusercontent.com/74711322/136813561-60ab2112-0ccc-4323-b970-cf7d6826409d.jpg" alt="feed example" width = "400" >&ensp;
+  <br>
   
-<img src="https://user-images.githubusercontent.com/74711322/136813647-42e59a40-e97b-4118-8cb5-50f3484867c3.jpg" alt="feed example" width = "400" >
+<img src="https://user-images.githubusercontent.com/74711322/136813647-42e59a40-e97b-4118-8cb5-50f3484867c3.jpg" alt="feed example" width = "400" >&ensp;
+  <br>
   
  
-<img src="https://user-images.githubusercontent.com/74711322/136813664-dc0615cc-9c2e-42ab-a96e-eff54ea46981.jpg" alt="feed example" width = "400" >
+<img src="https://user-images.githubusercontent.com/74711322/136813664-dc0615cc-9c2e-42ab-a96e-eff54ea46981.jpg" alt="feed example" width = "400" >&ensp;
+  <br>
   
-<img src="https://user-images.githubusercontent.com/74711322/136813691-d7214997-6f65-410b-98fd-4a7094a84810.jpg" alt="feed example" width = "400" >
+<img src="https://user-images.githubusercontent.com/74711322/136813691-d7214997-6f65-410b-98fd-4a7094a84810.jpg" alt="feed example" width = "400" >&ensp;
+  <br>
 
 
 </p>
