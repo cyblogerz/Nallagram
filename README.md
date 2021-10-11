@@ -4,7 +4,7 @@
 
 A Social media app (Both frontend and backend) created with Flutter and Firebase.(inspired from instagram)
 
-[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/cyblogerz)
+
 
 ## Show some :heart: and star the repo to support the project.
 
