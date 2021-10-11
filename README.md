@@ -8,6 +8,8 @@ A Social media app (Both frontend and backend) created with Flutter and Firebase
 
 ## Show some ❤️ and star ⭐ the repo to support the project.
 
+<a>[<img src="https://github.com/agniutkarsh/GitHubGraduation-2021/blob/main/Screenshot%202021-09-15%20at%2011.44.40%20AM.png" width="1000px">](https://hacktoberfest.digitalocean.com/)</a>
+
 ## Note
 This repository is still under development and I will continue to add more features to it.
 
