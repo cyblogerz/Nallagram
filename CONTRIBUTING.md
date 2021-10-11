@@ -1,4 +1,4 @@
-##Contributing
+## Contributing
 
 Contributions are always welcome!
 You can make the necessary contribution either by solving issues or adding new feature of your choice.
