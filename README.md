@@ -33,7 +33,7 @@ This repository is still under development and I will continue to add more featu
 
 
 <p>
-<img src="https://user-images.githubusercontent.com/74711322/136813482-124a01ee-e0ee-4294-b28a-0e43d3f13d2c.jpg" alt="feed example" width = "400">
+<img src="https://user-images.githubusercontent.com/74711322/136813482-124a01ee-e0ee-4294-b28a-0e43d3f13d2c.jpg" alt="feed example" width = "400">&ensp;
   
   
 <img src="https://user-images.githubusercontent.com/74711322/136813572-e3b76197-7368-4828-b9a2-9d69a1d6b430.jpg" alt="feed example" width = "400" >
