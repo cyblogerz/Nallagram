@@ -6,7 +6,7 @@ A Social media app (Both frontend and backend) created with Flutter and Firebase
 
 
 
-## Show some :heart: and star the repo to support the project.
+## Show some ❤️ and star ⭐ the repo to support the project.
 
 ## Note
 This repository is still under development and I will continue to add more features to it.
