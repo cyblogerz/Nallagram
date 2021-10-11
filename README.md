@@ -47,7 +47,7 @@ This repository is still under development and I will continue to add more featu
   
 <img src="https://user-images.githubusercontent.com/74711322/136813691-d7214997-6f65-410b-98fd-4a7094a84810.jpg" alt="feed example" width = "400" >
 
-  <img src="https://user-images.githubusercontent.com/35039342/55468755-adb8f500-5621-11e9-99fc-92ba57dcb268.png" alt="comment and activity feed example" width = "400">
+
 </p>
 
 
