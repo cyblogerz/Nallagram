@@ -41,8 +41,9 @@ const kMessageContainerDecoration = BoxDecoration(
 class PmScreen extends StatefulWidget {
   static const String id = 'chat_pm';
   final String selectedUser;
+  final String name;
 
-  PmScreen({@required this.selectedUser});
+  PmScreen({@required this.selectedUser,@required this.name});
   @override
   _PmScreenState createState() => _PmScreenState();
 }
@@ -82,7 +83,7 @@ class _PmScreenState extends State<PmScreen> {
           color: Colors.black,
         ),
         title: Text(
-          'Chat',
+          widget.name,
           style: TextStyle(
               color: Colors.black,
               fontFamily: 'Metropolis',

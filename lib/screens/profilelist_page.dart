@@ -57,13 +57,6 @@ class UserBubble extends StatefulWidget {
 
 class _UserBubbleState extends State<UserBubble> {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // followData(widget.selectedUser);
-  }
-
-  @override
   Widget build(BuildContext context) {
     if (!widget.isMe) {
       return Padding(
