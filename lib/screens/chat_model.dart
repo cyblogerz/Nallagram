@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,23 +28,36 @@ bool isAllEmoji(String text) {
 }
 
 const kMessageTextFieldDecoration = InputDecoration(
-  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-  hintText: 'Type your message here...',
-  border: InputBorder.none,
-);
+    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+    prefixIcon: Icon(Icons.emoji_emotions_outlined),
+    suffixIcon: Icon(Icons.camera_alt),
+    hintText: 'Type a message',
+    border: InputBorder.none);
 
 const kMessageContainerDecoration = BoxDecoration(
-  border: Border(
-    top: BorderSide(color: Colors.grey, width: 1.0),
-  ),
+  color: Colors.white,
+  boxShadow: [
+    BoxShadow(
+      color: Colors.black,
+      blurRadius: 0.7,
+    ),
+  ],
+  borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(32),
+      bottomRight: Radius.circular(32),
+      bottomLeft: Radius.circular(32)),
 );
 
 class PmScreen extends StatefulWidget {
   static const String id = 'chat_pm';
   final String selectedUser;
+  final String profileUrl;
   final String name;
 
-  PmScreen({@required this.selectedUser,@required this.name});
+  PmScreen(
+      {@required this.selectedUser,
+      @required this.name,
+      @required this.profileUrl});
   @override
   _PmScreenState createState() => _PmScreenState();
 }
@@ -82,12 +96,23 @@ class _PmScreenState extends State<PmScreen> {
           icon: Icon(Icons.arrow_back),
           color: Colors.black,
         ),
-        title: Text(
-          widget.name,
-          style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'Metropolis',
-              fontWeight: FontWeight.bold),
+        title: Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: Colors.grey,
+              backgroundImage: CachedNetworkImageProvider(widget.profileUrl),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(
+                widget.name,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Metropolis',
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
         ),
         backgroundColor: Colors.white,
       ),
@@ -99,22 +124,27 @@ class _PmScreenState extends State<PmScreen> {
             MessageStream(
               selectedUser: widget.selectedUser,
             ),
-            Container(
-              decoration: kMessageContainerDecoration,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: TextField(
-                      controller: messageTextController,
-                      onChanged: (value) {
-                        messageText = value;
-                        //Do something with the user input.
-                      },
-                      decoration: kMessageTextFieldDecoration,
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Container(
+                // decoration: ,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(
+                        decoration: kMessageContainerDecoration,
+                        child: TextField(
+                          controller: messageTextController,
+                          onChanged: (value) {
+                            messageText = value;
+                            //Do something with the user input.
+                          },
+                          decoration: kMessageTextFieldDecoration,
+                        ),
+                      ),
                     ),
-                  ),
-                  TextButton(
+                    TextButton(
                       onPressed: () {
                         messageTextController.clear();
                         _firestore
@@ -148,8 +178,17 @@ class _PmScreenState extends State<PmScreen> {
                         // });
                         //Implement send functionality.
                       },
-                      child: FaIcon(FontAwesomeIcons.arrowRight)),
-                ],
+                      child: CircleAvatar(
+                        child: Icon(
+                          Icons.send,
+                          color: Colors.white,
+                        ),
+                        backgroundColor: Colors.purple,
+                        radius: 25,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
