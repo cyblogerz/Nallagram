@@ -28,16 +28,19 @@ bool isAllEmoji(String text) {
 }
 
 const kMessageTextFieldDecoration = InputDecoration(
-  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-  hintText: 'Type your message here...',
-  border: InputBorder.none,
-);
+    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+    prefixIcon: Icon(Icons.emoji_emotions_outlined),
+    suffixIcon: Icon(Icons.camera_alt),
+    hintText: 'Type a message',
+    border: OutlineInputBorder(
+        // borderSide: BorderSide(color: Colors.red, width: 5.0),
+        ));
 
-const kMessageContainerDecoration = BoxDecoration(
-  border: Border(
-    top: BorderSide(color: Colors.grey, width: 1.0),
-  ),
-);
+// const kMessageContainerDecoration = BoxDecoration(
+//   border: Border(
+//     top: BorderSide(color: Colors.grey, width: 1.0),
+//   ),
+// );
 
 class PmScreen extends StatefulWidget {
   static const String id = 'chat_pm';
@@ -116,7 +119,7 @@ class _PmScreenState extends State<PmScreen> {
               selectedUser: widget.selectedUser,
             ),
             Container(
-              decoration: kMessageContainerDecoration,
+              // decoration: kMessageContainerDecoration,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
@@ -131,40 +134,48 @@ class _PmScreenState extends State<PmScreen> {
                     ),
                   ),
                   TextButton(
-                      onPressed: () {
-                        messageTextController.clear();
-                        _firestore
-                            .collection('users')
-                            .doc(widget.selectedUser)
-                            .collection('messages')
-                            .doc(loggedInUser.uid)
-                            .collection('pms')
-                            .doc()
-                            .set({
-                          'text': messageText,
-                          'sender': loggedInUser.email,
-                          'timestamp': FieldValue.serverTimestamp()
-                        });
-                        _firestore
-                            .collection('users')
-                            .doc(loggedInUser.uid)
-                            .collection('messages')
-                            .doc(widget.selectedUser)
-                            .collection('pms')
-                            .doc()
-                            .set({
-                          'text': messageText,
-                          'sender': loggedInUser.email,
-                          'timestamp': FieldValue.serverTimestamp()
-                        });
-                        // .add({
-                        //   'text': messageText,
-                        //   'sender': loggedInUser.email,
-                        //   'timestamp': FieldValue.serverTimestamp()
-                        // });
-                        //Implement send functionality.
-                      },
-                      child: FaIcon(FontAwesomeIcons.arrowRight)),
+                    onPressed: () {
+                      messageTextController.clear();
+                      _firestore
+                          .collection('users')
+                          .doc(widget.selectedUser)
+                          .collection('messages')
+                          .doc(loggedInUser.uid)
+                          .collection('pms')
+                          .doc()
+                          .set({
+                        'text': messageText,
+                        'sender': loggedInUser.email,
+                        'timestamp': FieldValue.serverTimestamp()
+                      });
+                      _firestore
+                          .collection('users')
+                          .doc(loggedInUser.uid)
+                          .collection('messages')
+                          .doc(widget.selectedUser)
+                          .collection('pms')
+                          .doc()
+                          .set({
+                        'text': messageText,
+                        'sender': loggedInUser.email,
+                        'timestamp': FieldValue.serverTimestamp()
+                      });
+                      // .add({
+                      //   'text': messageText,
+                      //   'sender': loggedInUser.email,
+                      //   'timestamp': FieldValue.serverTimestamp()
+                      // });
+                      //Implement send functionality.
+                    },
+                    child: CircleAvatar(
+                      child: Icon(
+                        Icons.send,
+                        color: Colors.white,
+                      ),
+                      backgroundColor: Colors.purple,
+                      radius: 30,
+                    ),
+                  ),
                 ],
               ),
             ),
