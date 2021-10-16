@@ -12,11 +12,11 @@ final _auth = FirebaseAuth.instance;
 
 User loggedInUser;
 
-const kSendButtonTextStyle = TextStyle(
-  color: Colors.lightBlueAccent,
-  fontWeight: FontWeight.bold,
-  fontSize: 18.0,
-);
+// const kSendButtonTextStyle = TextStyle(
+//   color: Colors.lightBlueAccent,
+//   fontWeight: FontWeight.bold,
+//   fontSize: 18.0,
+// );
 
 bool isAllEmoji(String text) {
   if (text != null) {
