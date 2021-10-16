@@ -32,15 +32,21 @@ const kMessageTextFieldDecoration = InputDecoration(
     prefixIcon: Icon(Icons.emoji_emotions_outlined),
     suffixIcon: Icon(Icons.camera_alt),
     hintText: 'Type a message',
-    border: OutlineInputBorder(
-        // borderSide: BorderSide(color: Colors.red, width: 5.0),
-        ));
+    border: InputBorder.none);
 
-// const kMessageContainerDecoration = BoxDecoration(
-//   border: Border(
-//     top: BorderSide(color: Colors.grey, width: 1.0),
-//   ),
-// );
+const kMessageContainerDecoration = BoxDecoration(
+  color: Colors.white,
+  boxShadow: [
+    BoxShadow(
+      color: Colors.black,
+      blurRadius: 0.7,
+    ),
+  ],
+  borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(32),
+      bottomRight: Radius.circular(32),
+      bottomLeft: Radius.circular(32)),
+);
 
 class PmScreen extends StatefulWidget {
   static const String id = 'chat_pm';
@@ -118,65 +124,71 @@ class _PmScreenState extends State<PmScreen> {
             MessageStream(
               selectedUser: widget.selectedUser,
             ),
-            Container(
-              // decoration: kMessageContainerDecoration,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: TextField(
-                      controller: messageTextController,
-                      onChanged: (value) {
-                        messageText = value;
-                        //Do something with the user input.
-                      },
-                      decoration: kMessageTextFieldDecoration,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      messageTextController.clear();
-                      _firestore
-                          .collection('users')
-                          .doc(widget.selectedUser)
-                          .collection('messages')
-                          .doc(loggedInUser.uid)
-                          .collection('pms')
-                          .doc()
-                          .set({
-                        'text': messageText,
-                        'sender': loggedInUser.email,
-                        'timestamp': FieldValue.serverTimestamp()
-                      });
-                      _firestore
-                          .collection('users')
-                          .doc(loggedInUser.uid)
-                          .collection('messages')
-                          .doc(widget.selectedUser)
-                          .collection('pms')
-                          .doc()
-                          .set({
-                        'text': messageText,
-                        'sender': loggedInUser.email,
-                        'timestamp': FieldValue.serverTimestamp()
-                      });
-                      // .add({
-                      //   'text': messageText,
-                      //   'sender': loggedInUser.email,
-                      //   'timestamp': FieldValue.serverTimestamp()
-                      // });
-                      //Implement send functionality.
-                    },
-                    child: CircleAvatar(
-                      child: Icon(
-                        Icons.send,
-                        color: Colors.white,
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Container(
+                // decoration: ,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(
+                        decoration: kMessageContainerDecoration,
+                        child: TextField(
+                          controller: messageTextController,
+                          onChanged: (value) {
+                            messageText = value;
+                            //Do something with the user input.
+                          },
+                          decoration: kMessageTextFieldDecoration,
+                        ),
                       ),
-                      backgroundColor: Colors.purple,
-                      radius: 30,
                     ),
-                  ),
-                ],
+                    TextButton(
+                      onPressed: () {
+                        messageTextController.clear();
+                        _firestore
+                            .collection('users')
+                            .doc(widget.selectedUser)
+                            .collection('messages')
+                            .doc(loggedInUser.uid)
+                            .collection('pms')
+                            .doc()
+                            .set({
+                          'text': messageText,
+                          'sender': loggedInUser.email,
+                          'timestamp': FieldValue.serverTimestamp()
+                        });
+                        _firestore
+                            .collection('users')
+                            .doc(loggedInUser.uid)
+                            .collection('messages')
+                            .doc(widget.selectedUser)
+                            .collection('pms')
+                            .doc()
+                            .set({
+                          'text': messageText,
+                          'sender': loggedInUser.email,
+                          'timestamp': FieldValue.serverTimestamp()
+                        });
+                        // .add({
+                        //   'text': messageText,
+                        //   'sender': loggedInUser.email,
+                        //   'timestamp': FieldValue.serverTimestamp()
+                        // });
+                        //Implement send functionality.
+                      },
+                      child: CircleAvatar(
+                        child: Icon(
+                          Icons.send,
+                          color: Colors.white,
+                        ),
+                        backgroundColor: Colors.purple,
+                        radius: 25,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
