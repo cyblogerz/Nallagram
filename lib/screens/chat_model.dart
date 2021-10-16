@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,9 +42,13 @@ const kMessageContainerDecoration = BoxDecoration(
 class PmScreen extends StatefulWidget {
   static const String id = 'chat_pm';
   final String selectedUser;
+  final String profileUrl;
   final String name;
 
-  PmScreen({@required this.selectedUser,@required this.name});
+  PmScreen(
+      {@required this.selectedUser,
+      @required this.name,
+      @required this.profileUrl});
   @override
   _PmScreenState createState() => _PmScreenState();
 }
@@ -82,12 +87,23 @@ class _PmScreenState extends State<PmScreen> {
           icon: Icon(Icons.arrow_back),
           color: Colors.black,
         ),
-        title: Text(
-          widget.name,
-          style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'Metropolis',
-              fontWeight: FontWeight.bold),
+        title: Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: Colors.grey,
+              backgroundImage: CachedNetworkImageProvider(widget.profileUrl),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(
+                widget.name,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Metropolis',
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
         ),
         backgroundColor: Colors.white,
       ),

@@ -160,6 +160,7 @@ class _UserBubbleState extends State<UserBubble> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => PmScreen(
+                            profileUrl: widget.profileUrl,
                             name: widget.name,
                             selectedUser: widget.selectedUser,
                           )));
