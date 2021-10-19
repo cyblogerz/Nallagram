@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nallagram/screens/profilelist_page.dart';
+import 'package:nallagram/widgets/SearchBox.dart';
 import 'dart:math';
 import 'package:toast/toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -73,40 +74,7 @@ class Explore extends StatelessWidget {
 
     return Column(
       children: <Widget>[
-        GestureDetector(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ProfileList()));
-          },
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.0),
-            height: 50.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
-              color: Colors.grey.shade400,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    'Search',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'Metropolis',
-                      fontSize: 15.0,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Icon(Icons.search),
-                ),
-              ],
-            ),
-          ),
-        ),
+        SearchBox(),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
