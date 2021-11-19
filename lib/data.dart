@@ -4,7 +4,7 @@ import 'dart:math';
 List<String> _names = [
   'ibrahim_kutty',
   'moid_een',
-  'arunsmoki',
+  'arun_smoki',
   'rahulraj_2020',
   'kimbean',
   'tony_stark',
