@@ -88,11 +88,5 @@ This repository is still under development and I will continue to add more featu
 <a href="https://www.linkedin.com/in/pranavajay/"><img src="https://user-images.githubusercontent.com/35039342/55471530-94b34280-5627-11e9-8c0e-6fe86a8406d6.png" width="60"></a>
 
 
-## How to Contribute
-1. Fork the the project
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Make required changes and commit (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
-5. Create new Pull Request
 
 
