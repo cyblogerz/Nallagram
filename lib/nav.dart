@@ -86,6 +86,7 @@ class _NavState extends State<Nav> {
           ),
         ),
         actions: [
+          
           IconButton(
             icon: FaIcon(
               FontAwesomeIcons.paperPlane,
