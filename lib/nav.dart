@@ -1,5 +1,4 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,13 +7,11 @@ import 'package:flutter/services.dart';
 import 'package:nallagram/screens/Explore/explore_page.dart';
 import 'screens/Activity/activity_page.dart';
 import 'package:nallagram/screens/Home/home.dart';
-// import 'package:cached_network_image/cached_network_image.dart';
 import 'screens/Create/create_page.dart';
 import 'screens/Chat/chat_home.dart';
 import 'screens/Profile/profile.dart';
 
 final _auth = FirebaseAuth.instance;
-// final FirebaseMessaging _firebasemessaging = FirebaseMessaging.instance;
 User loggedInUser = _auth.currentUser;
 
 class Nav extends StatefulWidget {
@@ -22,18 +19,6 @@ class Nav extends StatefulWidget {
   @override
   _NavState createState() => _NavState();
 }
-
-// _getToken() {
-//   _firebasemessaging.getToken().then((deviceToken) {
-//     print("DeviceToken : $deviceToken");
-//   });
-// }
-
-// _configureFirebaseListeners() async{
-//  Stream FirebaseMessaging.onMessage.listen(RemoteMessage message){
-
-//   }
-// }
 
 class _NavState extends State<Nav> {
   @override

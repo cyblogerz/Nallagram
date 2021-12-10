@@ -1,4 +1,3 @@
-// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:nallagram/nav.dart';
 import 'package:nallagram/screens/Authenticate/login_screen.dart';
@@ -7,7 +6,6 @@ import 'screens/Authenticate/welcome_screen.dart';
 import 'screens/Authenticate/register_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'root.dart';
-// import 'chat_screen.dart';
 import 'screens/Chat/chat_home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -15,7 +13,6 @@ final _auth = FirebaseAuth.instance;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await Firebase.initializeApp();
   runApp(MyApp());
 }
