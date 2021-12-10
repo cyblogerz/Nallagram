@@ -9,10 +9,6 @@ import 'package:nallagram/screens/Posts/postView_model.dart';
 import 'package:nallagram/screens/Story/storyview.dart';
 
 import 'profile_upload.dart';
-
-//Profile photo - squircle --> posts no | Followers no | Following no |
-//Name o <em>Position</em>
-//About
 final _auth = FirebaseAuth.instance;
 final _store = FirebaseFirestore.instance;
 bool _persposts = true;
@@ -24,8 +20,6 @@ void getProfileData() async {
   following = data['following'];
   descr = data['descr'];
   posts = data['posts'];
-  // userId = data['userid'];
-  print(data);
 }
 
 void getCurrentUser() {
@@ -33,17 +27,13 @@ void getCurrentUser() {
     final user = _auth.currentUser;
     if (user != null) {
       loggedInUser = user;
-      print(loggedInUser);
     }
   } catch (e) {
     print(e);
   }
 }
 
-// User loggedInUser;
-// var data;
 int posts;
-// String userId;
 var descr;
 int followers;
 int following;
@@ -217,19 +207,6 @@ class _ProfileState extends State<Profile> {
               )),
             ],
           ),
-          // Row(
-          //   children: <Widget>[
-          //     Container(
-          //       height: 100,
-          //       width: 100,
-          //       decoration: BoxDecoration(
-          //         borderRadius: BorderRadius.circular(20),
-          //         border: Border()
-          //       ),
-          //       child: Icon(Icons.add),
-          //     ),
-          //   ],
-          // ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -368,15 +345,6 @@ class _ProfilePostsState extends State<ProfilePosts> {
                           ),
                         ),
                       )),
-                  // child: IonButton(
-                  //     onPressed: () {
-                  //       setState(() {
-                  //         _persposts = false;
-                  //       });
-                  //     },
-                  //     icon: FaIcon(
-                  //       FontAwesomeIcons.solidIdBadge,
-                  //     )),
                 ),
               ),
             ],
@@ -410,50 +378,7 @@ class ImagePost extends StatelessWidget {
         ),
       );
     }
-    // else {
-    //     return Padding(
-    //       padding: const EdgeInsets.all(8.0),
-    //       child: Column(
-    //         crossAxisAlignment: CrossAxisAlignment.start,
-    //         children: [
-    //           Padding(
-    //             padding: const EdgeInsets.only(bottom: 5.0),
-    //             child: Text(
-    //               sender,
-    //               style: TextStyle(color: Colors.black54, fontSize: 12),
-    //             ),
-    //           ),
-    //           Container(
-    //             // elevation: 5.0,
-    //             decoration: BoxDecoration(
-    //               gradient: LinearGradient(
-    //                 colors: [Colors.pink, Colors.redAccent, Colors.orange],
-    //                 begin: Alignment.bottomRight,
-    //                 end: Alignment.topLeft,
-    //               ),
-    //               borderRadius: BorderRadius.only(
-    //                   bottomLeft: Radius.circular(30.0),
-    //                   topRight: Radius.circular(30.0),
-    //                   bottomRight: Radius.circular(30.0)),
-    //             ),
-
-    //             child: Padding(
-    //               padding: const EdgeInsets.symmetric(
-    //                   vertical: 10.0, horizontal: 20.0),
-    //               child: Text(
-    //                 text == null ? '' : text,
-    //                 style: TextStyle(
-    //                   fontSize: 16,
-    //                   color: Colors.white,
-    //                   fontFamily: 'Metropolis',
-    //                 ),
-    //               ),
-    //             ),
-    //           ),
-    //         ],
-    //       ),
-    //     );
-    //   }
+  
   }
 }
 
@@ -545,14 +470,6 @@ class _HighlightState extends State<Highlight> {
               height: 60,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
-                // boxShadow: [
-                //   BoxShadow(
-                //     color: Colors.pink.withOpacity(0.2),
-                //     spreadRadius: 2,
-                //     blurRadius: 8,
-                //     offset: Offset(0, 7),
-                //   ),
-                // ],
                 gradient: LinearGradient(
                   colors: [Colors.purple, Colors.blue],
                   begin: Alignment.topCenter,

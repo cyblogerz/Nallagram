@@ -2,42 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:toast/toast.dart';
-import '../../data.dart';
 
 class Activity extends StatelessWidget {
-  List<String> _names = [
-    'ibrahim_kutty',
-    'moid_een',
-    'arunsmoki',
-    'rahulraj_2020',
-    'kimbean',
-    'tony_stark',
-    'peter_parker',
-    'amelia_desuza',
-    'akshayvlogger',
-    'karthiksur_ya',
-    'rasput_david',
-    'juan',
-    'kan_nan'
-  ];
-  List<String> _places = [
-    'Kottayam',
-    'Enathu',
-    'Adoor',
-    'Pathanamthitta',
-    'OceanView',
-    'Miami',
-    'Newzealand',
-    'Niagara',
-    'Kerala',
-    'Mumbai',
-    'Paradise',
-    'Pandalam',
-    'Eranakulam',
-    'Bhopal',
-    'Kanyakumari'
-  ];
-
   @override
   Widget build(BuildContext context) {
     ListTile _followList(int num, String name, String place) {
@@ -200,25 +166,25 @@ class Activity extends StatelessWidget {
             ),
           ],
         ),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
-        _followList(Random().nextInt(10) + 1, gen(_names), gen(_places)),
+        _followList(Random().nextInt(10) + 1, 'Harris', 'Enathu'),
+        _followList(Random().nextInt(10) + 1, 'Rahul', 'India'),
+        _followList(Random().nextInt(10) + 1, 'Mani', 'Los Angeles'),
+        _followList(Random().nextInt(10) + 1, 'Rajpal', 'Newzealand'),
+        _followList(Random().nextInt(10) + 1, 'Kim jung', 'Trivandrum'),
+        _followList(Random().nextInt(10) + 1, 'Gregory', 'Adoor'),
+        _followList(Random().nextInt(10) + 1, 'Rahul', 'New York'),
+        _followList(Random().nextInt(10) + 1, 'Devis', 'Kerala'),
+        _followList(Random().nextInt(10) + 1, 'Ram', 'Jammu'),
+        _followList(Random().nextInt(10) + 1, 'Edwin', 'India'),
+        _followList(Random().nextInt(10) + 1, 'Aswathy', 'Kovalam'),
+        _followList(Random().nextInt(10) + 1, 'Pranav', 'Thiruvalla'),
+        _followList(Random().nextInt(10) + 1, 'Aswin', 'Pala'),
+        _followList(Random().nextInt(10) + 1, 'Devu', 'Chenganoor'),
+        _followList(Random().nextInt(10) + 1, 'Prakash', 'MAnnady'),
+        _followList(Random().nextInt(10) + 1, 'Athul', 'Korea'),
+        _followList(Random().nextInt(10) + 1, 'Rajiv', 'Washington'),
+        _followList(Random().nextInt(10) + 1, 'Mohanlal', 'AbuDhabi'),
+        _followList(Random().nextInt(10) + 1, 'Sethupathi', 'Heaven'),
       ],
     );
   }
