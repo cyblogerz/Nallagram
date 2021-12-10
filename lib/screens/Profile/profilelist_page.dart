@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:nallagram/screens/user_profile.dart';
+import 'package:nallagram/screens/Profile/user_profile.dart';
 import 'profile.dart';
 
-import '../nav.dart';
+import '../../nav.dart';
 
 final _firestore = FirebaseFirestore.instance;
 final _auth = FirebaseAuth.instance;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:toast/toast.dart';
-import '../data.dart';
+import '../../data.dart';
 
 class Activity extends StatelessWidget {
   List<String> _names = [

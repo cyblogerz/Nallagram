@@ -3,12 +3,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:nallagram/models/story_view_model.dart';
 // import 'package:nallagram/screens/create_page.dart';
 // import 'package:nallagram/nav.dart';
 // import 'package:nallagram/screens/profile.dart';
-import 'package:nallagram/screens/storyview.dart';
+import 'package:nallagram/screens/Story/storyview.dart';
 import 'package:like_button/like_button.dart';
-import 'commentspage.dart';
+import 'package:nallagram/widgets/story_widget.dart';
+import '../Comments/commentspage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_storage/firebase_storage.dart';
 // import '../data.dart';
@@ -29,94 +31,10 @@ class _HomeState extends State<Home> {
     );
   }
 
-  List<String> _names = [
-    'ibram',
-    'moien',
-    'arunsmoki',
-    'ralraj',
-    'kimbean',
-    'tkstark',
-    'peter',
-    'desuza',
-    'akvlogger',
-    'karthiks',
-    'dravid',
-    'juan',
-    'kannan'
-  ];
 
   @override
   Widget build(BuildContext context) {
-    Widget BuildKey(int num, String name) {
-      return Container(
-        child: Column(children: <Widget>[
-          SizedBox(
-            height: 10.0,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => StoryPageView()));
-            },
-            child: Container(
-              width: 60,
-              height: 60,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.pink.withOpacity(0.2),
-                    spreadRadius: 2,
-                    blurRadius: 8,
-                    offset: Offset(0, 7),
-                  ),
-                ],
-                gradient: LinearGradient(
-                  colors: [Color(0xFF9B2282), Color(0xFFEEA863)],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Container(
-                  height: 36,
-                  width: 36,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(1.0),
-                    child: Container(
-                      width: 30,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                            image: AssetImage('images/usr$num.jfif'),
-                            fit: BoxFit.cover),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            // padding: const EdgeInsets.fromLTRB(10.0, 5.0, 8.0, 5.0),
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              '$name',
-              style: TextStyle(
-                fontFamily: 'Metropolis',
-                fontSize: 11.0,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          )
-        ]),
-      );
-    }
+    
 
     return ListView(children: [
       Column(
@@ -124,32 +42,32 @@ class _HomeState extends State<Home> {
           Container(
             color: Colors.white,
             child: Column(
-              children: <Widget>[
+              children: <Widget>[ 
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       spacing(),
-                      BuildKey(1, _names[0]),
+                      StoryWid(img:StoryViewData[0].img , name:StoryViewData[0].name),
                       spacing(),
-                      BuildKey(2, _names[1]),
+                       StoryWid(img:StoryViewData[1].img, name:StoryViewData[1].name),
                       spacing(),
-                      BuildKey(3, _names[2]),
+                       StoryWid(img:StoryViewData[2].img, name:StoryViewData[2].name),
                       spacing(),
-                      BuildKey(4, _names[3]),
+                       StoryWid(img:StoryViewData[3].img, name:StoryViewData[3].name),
                       spacing(),
-                      BuildKey(5, _names[4]),
+                      StoryWid(img:StoryViewData[4].img, name:StoryViewData[4].name),
                       spacing(),
-                      BuildKey(6, 'kimbean'),
+                       StoryWid(img:StoryViewData[5].img, name:StoryViewData[5].name),
                       spacing(),
-                      BuildKey(7, _names[5]),
+                       StoryWid(img:StoryViewData[6].img, name:StoryViewData[6].name),
                       spacing(),
-                      BuildKey(8, _names[6]),
+                       StoryWid(img:StoryViewData[7].img, name:StoryViewData[7].name),
                       spacing(),
-                      BuildKey(9, _names[7]),
+                      StoryWid(img:StoryViewData[8].img, name:StoryViewData[8].name),
                       spacing(),
-                      BuildKey(10, _names[8]),
+                       StoryWid(img:StoryViewData[9].img, name:StoryViewData[9].name),
                       spacing(),
                     ],
                   ),
@@ -191,15 +109,8 @@ class PostCard extends StatefulWidget {
 }
 
 class _PostCardState extends State<PostCard> {
-  // Future likedUsers(loggedInuser) async {
-  //   var docref = await _firestore.collection('posts').doc(widget.postID).get();
-  //   var data = docref.data();
-  //   likedusers = data['likedusers'];
-  // }
-
   @override
   void initState() {
-    // likedUsers(loggedInUser);
     super.initState();
   }
 
@@ -215,29 +126,6 @@ class _PostCardState extends State<PostCard> {
                     )));
       });
     }
-
-    // void liked() {
-    //   List likedlist = [];
-    //   isPostLiked
-    //       ? likedlist.add(loggedInUser.uid.toString())
-    //       : likedlist.remove(loggedInUser.uid.toString());
-    //   _firestore.collection('posts').doc(widget.postID).update({
-    //     'likedusers': likedlist,
-    //   });
-
-    //   print('double tapped');
-    // }
-
-    // void likeCheck() async {
-    //   Future<DocumentSnapshot> docSnapshot =
-    //       _firestore.collection('posts').doc(widget.postID).get();
-    //   DocumentSnapshot doc = await docSnapshot;
-    //   if (doc['likedusers'].contains(loggedInUser.uid)) {
-    //     isPostLiked = true;
-    //   } else {
-    //     isPostLiked = false;
-    //   }
-    // }
 
     return Stack(
       children: <Widget>[

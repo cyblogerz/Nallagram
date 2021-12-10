@@ -4,9 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:nallagram/screens/edit_profile.dart';
-import 'package:nallagram/screens/postView_model.dart';
-import 'package:nallagram/screens/storyview.dart';
+import 'package:nallagram/screens/Profile/edit_profile.dart';
+import 'package:nallagram/screens/Posts/postView_model.dart';
+import 'package:nallagram/screens/Story/storyview.dart';
 
 import 'profile_upload.dart';
 

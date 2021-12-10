@@ -7,7 +7,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:path/path.dart';
 
-import '../nav.dart';
+import '../../nav.dart';
 
 final storage = FirebaseStorage.instance;
 final store = FirebaseFirestore.instance;
