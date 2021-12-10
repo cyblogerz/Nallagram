@@ -120,7 +120,7 @@ class _PostCardState extends State<PostCard> {
       setState(() {
         Navigator.push(
             context,
-            MaterialPageRoute(
+            MaterialPageRoute(  
                 builder: (context) => CommentsPage(
                       postID: widget.postID,
                     )));
@@ -224,22 +224,7 @@ class _PostCardState extends State<PostCard> {
             ),
           ),
         ),
-        // Positioned.fill(
-        //   top: 340,
-        //   child: Align(
-        //     alignment: Alignment.center,
-        //     child: Center(
-        //       child: ClipRRect(
-        //         borderRadius: BorderRadius.all(Radius.circular(32)),
-        //         child: BackdropFilter(
-        //           filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-        //           child: Container(
-        //             width: 200,
-        //             height: 50,
-        //             decoration: BoxDecoration(
-        //               color: Colors.white10.withOpacity(0.5),
-        //               borderRadius: BorderRadius.all(Radius.circular(50.0)),
-        //             ),
+        
         Positioned.fill(
           top: 350,
           left: 25,
