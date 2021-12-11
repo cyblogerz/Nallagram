@@ -13,23 +13,27 @@ final _auth = FirebaseAuth.instance;
 bool tapped = false;
 // User loggedInUser;
 
-const kSendButtonTextStyle = TextStyle(
-  color: Colors.black,
-  fontWeight: FontWeight.bold,
-  fontSize: 18.0,
-);
-
 const kMessageTextFieldDecoration = InputDecoration(
-  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-  hintText: 'Add a comment..',
-  border: InputBorder.none,
-);
+    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+    prefixIcon: Icon(Icons.emoji_emotions_outlined),
+    suffixIcon: Icon(Icons.camera_alt),
+    hintText: 'Type a message',
+    border: InputBorder.none);
 
 const kMessageContainerDecoration = BoxDecoration(
-  border: Border(
-    top: BorderSide(color: Colors.grey, width: 1.0),
-  ),
+  color: Colors.white,
+  boxShadow: [
+    BoxShadow(
+      color: Colors.black,
+      blurRadius: 0.7,
+    ),
+  ],
+  borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(32),
+      bottomRight: Radius.circular(32),
+      bottomLeft: Radius.circular(32)),
 );
+
 
 class CommentsPage extends StatefulWidget {
   static const String id = 'comment_screen';
@@ -90,42 +94,50 @@ class _CommentsPageState extends State<CommentsPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             MessageStream(postID: widget.postID),
-            Container(
-              decoration: kMessageContainerDecoration,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: TextField(
-                      controller: messageTextController,
-                      onChanged: (value) {
-                        commentText = value;
-                        //Do something with the user input.
-                      },
-                      decoration: kMessageTextFieldDecoration,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: kMessageContainerDecoration,
+                      child: TextField(
+                        controller: messageTextController,
+                        onChanged: (value) {
+                          commentText = value;
+                          //Do something with the user input.
+                        },
+                        decoration: kMessageTextFieldDecoration,
+                      ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      messageTextController.clear();
-                      _firestore
-                          .collection('posts')
-                          .doc(widget.postID)
-                          .collection('comments')
-                          .add({
-                        'name': loggedInUser.displayName,
-                        'comment': commentText,
-                        'profile': loggedInUser.photoURL,
-                        'timestamp': FieldValue.serverTimestamp(),
-                      });
-                      //Implement send functionality.
-                    },
-                    child: FaIcon(
-                      FontAwesomeIcons.arrowRight,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    messageTextController.clear();
+                    _firestore
+                        .collection('posts')
+                        .doc(widget.postID)
+                        .collection('comments')
+                        .add({
+                      'name': loggedInUser.displayName,
+                      'comment': commentText,
+                      'profile': loggedInUser.photoURL,
+                      'timestamp': FieldValue.serverTimestamp(),
+                    });
+                    //Implement send functionality.
+                  },
+                  child: CircleAvatar(
+                        child: Icon(
+                          Icons.send,
+                          color: Colors.white,
+                        ),
+                        backgroundColor: Colors.purple,
+                        radius: 25,
+                      ),
+                ),
+              ],
             ),
           ],
         ),
