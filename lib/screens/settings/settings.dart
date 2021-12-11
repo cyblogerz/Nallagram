@@ -6,8 +6,9 @@ class AppSettings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Settings"),
-        leading: Icon(Icons.arrow_back),
+        title: Text("Settings",style: TextStyle(color: Colors.black),),
+        backgroundColor: Colors.white,
+        leading: IconButton(icon:Icon(Icons.arrow_back),color: Colors.black, onPressed: () {Navigator.pop(context);  },),
       ),
       body: ListView(
         children: <Widget>[
@@ -24,7 +25,7 @@ class AppSettings extends StatelessWidget {
             title: Text("Privacy"),
           ),
           ListTile(
-            leading: FaIcon(FontAwesomeIcons.shieldVirus),
+            leading: FaIcon(FontAwesomeIcons.shieldAlt),
             title: Text("Security"),
           ),
           ListTile(
