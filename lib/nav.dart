@@ -1,10 +1,10 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:nallagram/screens/Explore/explore_page.dart';
+import 'package:nallagram/screens/blog/blog_home.dart';
 import 'screens/Activity/activity_page.dart';
 import 'package:nallagram/screens/Home/home.dart';
 import 'screens/Create/create_page.dart';
@@ -71,7 +71,24 @@ class _NavState extends State<Nav> {
           ),
         ),
         actions: [
-          
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => BlogHome()));
+            },
+            child: Container(
+              padding: EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: LinearGradient(
+                  colors: [Colors.pink, Colors.redAccent, Colors.orange],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: Icon(Icons.notes_rounded),
+            ),
+          ),
           IconButton(
             icon: FaIcon(
               FontAwesomeIcons.paperPlane,

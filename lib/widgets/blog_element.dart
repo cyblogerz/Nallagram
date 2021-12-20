@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:incologger/screens/blog/blog_view.dart';
+
+import 'package:nallagram/screens/blog/blog_view.dart';
+import 'package:nallagram/widgets/ctag.dart';
 
 class BlogElement extends StatelessWidget {
   BlogElement({
-    required this.title,
-    required this.comments,
-    required this.time,
-    required this.image,
-    required this.text,
-    required this.author,
+    @required this.title,
+    @required this.comments,
+    @required this.time,
+    @required this.image,
+    @required this.text,
+    @required this.author,
+    @required this.tagColor,
+    @required this.tagName,
   });
   final String title;
   final String image;
+  final Color tagColor;
+  final String tagName;
 
   final String text;
   final String time;
@@ -26,6 +32,8 @@ class BlogElement extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => BlogView(
+                      tName: tagName,
+                      tColor: tagColor,
                       title: title,
                       img: image,
                       author: author,
@@ -59,6 +67,10 @@ class BlogElement extends StatelessWidget {
                   width: 75,
                   decoration: BoxDecoration(
                       color: Colors.teal,
+                      image: DecorationImage(
+                        image: NetworkImage(image),
+                        fit: BoxFit.cover,
+                      ),
                       borderRadius: BorderRadius.circular(15)),
                 ),
               ),
@@ -67,16 +79,32 @@ class BlogElement extends StatelessWidget {
               ),
               Expanded(
                 child: Container(
-                  height: 100,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
-                        title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                        decoration: BoxDecoration(
+                            color: tagColor,
+                            borderRadius: BorderRadius.circular(6)),
+                        child: Text(
+                          tagName,
+                          style: TextStyle(
+                              fontFamily: "Metropolis",
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
                         ),
                       ),
                       Padding(

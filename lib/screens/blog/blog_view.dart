@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 class BlogView extends StatelessWidget {
   const BlogView(
       {@required this.title,
+      @required this.tColor,
+      @required this.tName,
       @required this.tdata,
       @required this.comments,
       @required this.img,
       @required this.author,
       @required this.time});
   final String title;
+  final String tName;
+  final Color tColor;
   final String tdata;
   final int comments;
   final String img;
@@ -42,7 +46,28 @@ class BlogView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: Row(
-                      children: <Widget>[],
+                      children: <Widget>[
+                        Container(
+                            padding: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: tColor,
+                            ),
+                            child: Text(
+                              tName,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Metropolis"),
+                            )),
+                        Text(
+                          "  .  6min read   .   $time",
+                          style: TextStyle(
+                              fontFamily: "Metropolis",
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
                   ),
                   Text(

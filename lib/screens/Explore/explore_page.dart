@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nallagram/screens/Profile/profilelist_page.dart';
 import 'package:nallagram/widgets/SearchBox.dart';
+import 'package:nallagram/widgets/ctag.dart';
 import 'dart:math';
 import 'package:toast/toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -43,35 +44,6 @@ class Explore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget tagBuild(String tag, Color color) {
-      return GestureDetector(
-        onTap: () {
-          Toast.show("This feature will be available soon!", context,
-              duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-        },
-        child: Card(
-          margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 5.0),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-          color: color,
-          shadowColor: color,
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
-            child: Text(
-              '$tag',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'Metropolis',
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          elevation: 20.0,
-        ),
-      );
-    }
-
     return Column(
       children: <Widget>[
         SearchBox(),
@@ -79,17 +51,17 @@ class Explore extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: <Widget>[
-              tagBuild('Travel', Colors.pink),
-              tagBuild('Architecture', Colors.blue),
-              tagBuild('Travel', Colors.orange),
-              tagBuild('Technology', Colors.red),
-              tagBuild('Flutter', cgen(_colors)),
-              tagBuild('Python', cgen(_colors)),
-              tagBuild('Reactjs', cgen(_colors)),
-              tagBuild('Business', cgen(_colors)),
-              tagBuild('Design', cgen(_colors)),
-              tagBuild('Fashion', cgen(_colors)),
-              tagBuild('Music', cgen(_colors)),
+              tagBuild('Travel', Colors.pink, context),
+              tagBuild('Architecture', Colors.blue, context),
+              tagBuild('Travel', Colors.orange, context),
+              tagBuild('Technology', Colors.red, context),
+              tagBuild('Flutter', cgen(_colors), context),
+              tagBuild('Python', cgen(_colors), context),
+              tagBuild('Reactjs', cgen(_colors), context),
+              tagBuild('Business', cgen(_colors), context),
+              tagBuild('Design', cgen(_colors), context),
+              tagBuild('Fashion', cgen(_colors), context),
+              tagBuild('Music', cgen(_colors), context),
             ],
           ),
         ),

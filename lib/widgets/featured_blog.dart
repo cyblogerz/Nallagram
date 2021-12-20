@@ -9,6 +9,7 @@ Widget featuredElement(BuildContext context) {
         height: MediaQuery.of(context).size.height * 0.25,
         width: double.infinity,
         decoration: BoxDecoration(
+          color: Colors.blueGrey,
           image: DecorationImage(
             image: NetworkImage(
                 "https://cdn.dribbble.com/users/730703/screenshots/16787857/media/99fc22aa5c7c53e4d08b66e650f64a5a.jpg"),
@@ -29,7 +30,7 @@ Widget featuredElement(BuildContext context) {
       ),
     ),
     Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 8.0, top: 16),
       child: Row(
         children: <Widget>[
           Row(
