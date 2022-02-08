@@ -2,7 +2,7 @@
 
 
 
-A Social media app (Both frontend and backend) created with Flutter and Firebase.(inspired from instagram)
+A Social media app  created with Flutter and Firebase.(inspired from instagram)
 
 
 
