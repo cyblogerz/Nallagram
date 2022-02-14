@@ -26,7 +26,7 @@ This repository is still under development and I will continue to add more featu
    * Edit profile
    
  * Chat Screen
-    * Chat with any user
+    * One on One Chat with any user
     
  
 
