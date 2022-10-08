@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nallagram/nav.dart';
 import 'package:nallagram/screens/Authenticate/login_screen.dart';
+import 'package:nallagram/screens/Chat/calls_chat.dart';
+import 'package:nallagram/screens/Chat/new_message_chat.dart';
 import 'package:provider/provider.dart';
 import 'screens/Authenticate/welcome_screen.dart';
 import 'screens/Authenticate/register_screen.dart';
@@ -34,7 +36,9 @@ class MyApp extends StatelessWidget {
         routes: {
           LoginScreen.id: (context) => LoginScreen(),
           // ChatScreen.id: (context) => ChatScreen(),
+          NewMessageChat.id: (context) => NewMessageChat(),
           ChatHome.id: (context) => ChatHome(),
+          CallsChat.id: (context) => CallsChat(),
           Nav.id: (context) => Nav(),
           Register.id: (context) => Register(),
           Welcome.id: (context) => Welcome(),

@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:nallagram/screens/Chat/calls_chat.dart';
 import 'package:nallagram/screens/Chat/chat_model.dart';
+import 'package:nallagram/screens/Chat/new_message_chat.dart';
 import 'package:nallagram/widgets/SearchBox.dart';
 // import 'group_chat.dart';
 
@@ -56,33 +58,74 @@ class _ChatHomeState extends State<ChatHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(CupertinoIcons.back),
           color: Colors.black,
         ),
+        elevation: 0,
         title: Text(
-          'Chat',
+          'Chats',
           style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'Metropolis',
-              fontWeight: FontWeight.bold),
+            color: Colors.black,
+            fontFamily: 'Metropolis',
+            fontWeight: FontWeight.w900,
+          ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CallsChat(),
+                ),
+              );
+            },
+            icon: Icon(
+              CupertinoIcons.video_camera,
+              size: 40,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NewMessageChat(),
+                ),
+              );
+            },
+            icon: Icon(
+              CupertinoIcons.paperplane,
+              size: 28,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+        ],
         backgroundColor: Colors.white,
       ),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: SearchBox(),
-            ),
-            UsersStream(),
-          ],
-        ),
+        // child: Column(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   crossAxisAlignment: CrossAxisAlignment.stretch,
+        //   children: <Widget>[
+        //     Padding(
+        //       padding: const EdgeInsets.symmetric(vertical: 16.0),
+        //       child: SearchBox(),
+        //     ),
+        child: UsersStream(),
+        //   ],
+        // ),
       ),
     );
   }
@@ -117,13 +160,15 @@ class _UserBubbleState extends State<UserBubble> {
           onTap: () {
             setState(() {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PmScreen(
-                            profileUrl: widget.profileUrl,
-                            name: widget.name,
-                            selectedUser: widget.selectedUser,
-                          )));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PmScreen(
+                    profileUrl: widget.profileUrl,
+                    name: widget.name,
+                    selectedUser: widget.selectedUser,
+                  ),
+                ),
+              );
             });
           },
           child: Container(
@@ -138,10 +183,11 @@ class _UserBubbleState extends State<UserBubble> {
                     child: Row(
                       children: [
                         CircleAvatar(
-                            backgroundColor: Colors.blueGrey,
-                            radius: 32,
-                            backgroundImage:
-                                CachedNetworkImageProvider(widget.profileUrl)),
+                          backgroundColor: Colors.blueGrey,
+                          radius: 32,
+                          backgroundImage:
+                              CachedNetworkImageProvider(widget.profileUrl),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10.0, left: 20.0),
                           child: Column(
@@ -157,10 +203,11 @@ class _UserBubbleState extends State<UserBubble> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 5.0),
-                                child: Text('Tap to start messaging..',
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        fontFamily: 'Metropolis')),
+                                child: Text(
+                                  'Tap to start messaging..',
+                                  style: TextStyle(
+                                      fontSize: 10, fontFamily: 'Metropolis'),
+                                ),
                               ),
                             ],
                           ),

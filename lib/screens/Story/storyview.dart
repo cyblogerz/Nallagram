@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:story_view/story_view.dart';
 import 'package:flutter/material.dart';
 

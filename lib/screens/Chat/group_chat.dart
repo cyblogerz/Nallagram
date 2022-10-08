@@ -74,7 +74,7 @@ class _GroupChatState extends State<GroupChat> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(CupertinoIcons.back),
           color: Colors.black,
         ),
         title: Text(

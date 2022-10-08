@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nallagram/models/blog_shrink_model.dart';
 import 'package:nallagram/widgets/blog_element.dart';
@@ -18,8 +19,9 @@ class BlogHome extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: Icon(Icons.arrow_back)),
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(CupertinoIcons.back),
+        ),
       ),
       body: ListView(
         children: <Widget>[

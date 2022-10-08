@@ -49,12 +49,13 @@ class _UploadProfileState extends State<UploadProfile> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(
               onPressed: () => Navigator.pop(context),
               icon: Icon(
-                Icons.arrow_back,
+                CupertinoIcons.back,
                 color: Colors.black,
               )),
           backgroundColor: Colors.white,

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BlogView extends StatelessWidget {
@@ -22,13 +23,15 @@ class BlogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: Icon(Icons.arrow_back)),
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(CupertinoIcons.back),
+          ),
         ),
         body: ListView(padding: EdgeInsets.only(top: 0.0), children: <Widget>[
           Container(
