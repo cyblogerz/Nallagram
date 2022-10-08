@@ -1,13 +1,11 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nallagram/models/story_view_model.dart';
 // import 'package:nallagram/screens/create_page.dart';
 // import 'package:nallagram/nav.dart';
 // import 'package:nallagram/screens/profile.dart';
-import 'package:nallagram/screens/Story/storyview.dart';
 import 'package:like_button/like_button.dart';
 import 'package:nallagram/widgets/story_widget.dart';
 import '../Comments/commentspage.dart';

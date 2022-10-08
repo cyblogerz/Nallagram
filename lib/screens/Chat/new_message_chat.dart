@@ -1,32 +1,102 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:nallagram/screens/Profile/user_profile.dart';
-
-import '../../nav.dart';
+import 'package:nallagram/screens/Chat/chat_model.dart';
+import 'package:nallagram/widgets/SearchBox.dart';
 
 final _firestore = FirebaseFirestore.instance;
 final _auth = FirebaseAuth.instance;
-final currentUsermail = loggedInUser.email;
+User _loggedInUser;
+List<String> docList = [];
+void docCheck() async {
+  var result = await _firestore
+      .collection('users')
+      .doc(_loggedInUser.uid)
+      .collection('messages')
+      .get();
+  result.docs.forEach((res) {
+    docList.add(res.id.toString());
+  });
+}
 
-class ProfileList extends StatelessWidget {
+class NewMessageChat extends StatefulWidget {
+  static const String id = 'new_message_chat';
+  @override
+  _NewMessageChatState createState() => _NewMessageChatState();
+}
+
+class _NewMessageChatState extends State<NewMessageChat> {
+  //initialising firestore
+
+  String messageText;
+
+  @override
+  void initState() {
+    super.initState();
+    // docCheck();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        _loggedInUser = user;
+        print(_loggedInUser);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: Icon(
-                CupertinoIcons.back,
-                color: Colors.black,
-              )),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(CupertinoIcons.back),
+          color: Colors.black,
         ),
-        body: UsersStream(),
+        elevation: 0,
+        title: Text(
+          'New message',
+          style: TextStyle(
+            color: Colors.black,
+            fontFamily: 'Metropolis',
+            fontWeight: FontWeight.w900,
+          ),
+        ),
+        backgroundColor: Colors.white,
+      ),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              child: Text(
+                'To',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 18,
+                  fontFamily: 'Metropolis',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: SearchBox(),
+            ),
+            UsersStream(),
+          ],
+        ),
       ),
     );
   }
@@ -35,19 +105,15 @@ class ProfileList extends StatelessWidget {
 class UserBubble extends StatefulWidget {
   final String profileUrl;
   final String name;
-  final int posts;
-  final int followers;
-  final int following;
-  final String descr;
+  final String time;
+  final String message;
   final String selectedUser;
   final bool isMe;
   UserBubble(
       {@required this.profileUrl,
-      @required this.descr,
-      @required this.posts,
-      @required this.followers,
-      @required this.following,
       @required this.name,
+      @required this.message,
+      @required this.time,
       @required this.isMe,
       @required this.selectedUser});
 
@@ -65,28 +131,15 @@ class _UserBubbleState extends State<UserBubble> {
           onTap: () {
             setState(() {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => MaterialApp(
-                          home: Scaffold(
-                              appBar: AppBar(
-                                backgroundColor: Colors.white,
-                                leading: IconButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  icon: Icon(
-                                    CupertinoIcons.back,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                              body: UserProfile(
-                                  followers: widget.followers,
-                                  following: widget.following,
-                                  posts: widget.posts,
-                                  photoUrl: widget.profileUrl,
-                                  descr: widget.descr,
-                                  name: widget.name,
-                                  userid: widget.selectedUser)))));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PmScreen(
+                    profileUrl: widget.profileUrl,
+                    name: widget.name,
+                    selectedUser: widget.selectedUser,
+                  ),
+                ),
+              );
             });
           },
           child: Container(
@@ -101,10 +154,11 @@ class _UserBubbleState extends State<UserBubble> {
                     child: Row(
                       children: [
                         CircleAvatar(
-                            backgroundColor: Colors.blueGrey,
-                            radius: 32,
-                            backgroundImage:
-                                CachedNetworkImageProvider(widget.profileUrl)),
+                          backgroundColor: Colors.blueGrey,
+                          radius: 32,
+                          backgroundImage:
+                              CachedNetworkImageProvider(widget.profileUrl),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10.0, left: 20.0),
                           child: Column(
@@ -117,13 +171,6 @@ class _UserBubbleState extends State<UserBubble> {
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Metropolis'),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5.0),
-                                child: Text('Tap to view profile',
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        fontFamily: 'Metropolis')),
                               ),
                             ],
                           ),
@@ -162,17 +209,9 @@ class UsersStream extends StatelessWidget {
         for (var user in users) {
           final profile = user['profile'];
           final name = user['name'];
-          final followers = user['followers'];
-          final following = user['following'];
-          final descr = user['descr'];
-          final posts = user['posts'];
           final selectedUid = user['userid'];
-          final currentUser = loggedInUser.displayName;
+          final currentUser = _loggedInUser.displayName;
           final userBubble = UserBubble(
-            descr: descr,
-            followers: followers,
-            following: following,
-            posts: posts,
             profileUrl: profile,
             selectedUser: selectedUid,
             name: name,
@@ -180,8 +219,10 @@ class UsersStream extends StatelessWidget {
           );
           userBubbles.add(userBubble);
         }
-        return ListView(
-          children: userBubbles,
+        return Expanded(
+          child: ListView(
+            children: userBubbles,
+          ),
         );
       },
     );

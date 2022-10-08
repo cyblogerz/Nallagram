@@ -1,15 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:nallagram/widgets/bloc/file_handler_bloc.dart';
 
 final _firestore = FirebaseFirestore.instance;
 final _auth = FirebaseAuth.instance;
-
+bool isOpen = false;
 User loggedInUser;
 
 // const kSendButtonTextStyle = TextStyle(
@@ -27,11 +29,18 @@ bool isAllEmoji(String text) {
   return false;
 }
 
-const kMessageTextFieldDecoration = InputDecoration(
-    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-    prefixIcon: Icon(Icons.emoji_emotions_outlined),
-    suffixIcon: Icon(Icons.camera_alt),
+InputDecoration kMessageTextFieldDecoration = InputDecoration(
+    contentPadding: EdgeInsets.symmetric(
+      vertical: 10.0,
+      horizontal: 20.0,
+    ),
+    prefixIcon:
+        IconButton(onPressed: () {}, icon: Icon(Icons.emoji_emotions_outlined)),
+    suffixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.camera_alt)),
     hintText: 'Type a message',
+    hintStyle: TextStyle(
+      height: 1.5,
+    ),
     border: InputBorder.none);
 
 const kMessageContainerDecoration = BoxDecoration(
@@ -89,11 +98,20 @@ class _PmScreenState extends State<PmScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // return BlocListener<FileHandlerBloc, FileHandlerState>(
+    //   listener: (context, state) {
+    //     //var bloc = BlocProvider.of<FileHandlerBloc>(context);
+    //     if (state is OptionsPopupOpened) {
+    //       bloc.add(PickFile(state.type));
+    //       //   }
+    //     }
+    //   },
+    //  child:
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(CupertinoIcons.back),
           color: Colors.black,
         ),
         title: Row(
@@ -107,10 +125,78 @@ class _PmScreenState extends State<PmScreen> {
               child: Text(
                 widget.name,
                 style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Metropolis',
-                    fontWeight: FontWeight.bold),
+                  color: Colors.black,
+                  fontFamily: 'Metropolis',
+                  fontWeight: FontWeight.bold,
+                ),
               ),
+            ),
+            Spacer(),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                CupertinoIcons.videocam,
+                color: Colors.black,
+                size: 30,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                CupertinoIcons.phone,
+                color: Colors.black,
+              ),
+            ),
+            DropdownButton2(
+              offset: Offset(-130, 0),
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w700,
+                fontSize: 16,
+              ),
+              underline: Container(),
+              customButton: Container(
+                child: Icon(
+                  CupertinoIcons.list_bullet,
+                  color: Colors.black,
+                ),
+              ),
+              dropdownWidth: 150,
+              dropdownDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              buttonDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              items: [
+                MenuItem(
+                  value: 'Block',
+                  text: '',
+                  widget: Block(),
+                ),
+                MenuItem(
+                  value: 'Report',
+                  text: '',
+                  widget: Report(),
+                ),
+              ].map<DropdownMenuItem<MenuItem>>((MenuItem value) {
+                return DropdownMenuItem<MenuItem>(
+                  value: value,
+                  child: value,
+                );
+              }).toList(),
+              onMenuStateChange: (isOpen) {
+                onMenuStateChange(isOpen);
+              },
+              onChanged: (MenuItem item) {
+                switch (item?.value) {
+                  case 'Block':
+                    break;
+                  case 'Report':
+                    break;
+                }
+              },
             ),
           ],
         ),
@@ -194,7 +280,14 @@ class _PmScreenState extends State<PmScreen> {
           ],
         ),
       ),
+      // ),
     );
+  }
+
+  void onMenuStateChange(open) {
+    setState(() {
+      isOpen = open;
+    });
   }
 }
 
@@ -355,6 +448,60 @@ class MessageStream extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class MenuItem extends StatefulWidget {
+  final String value;
+  final String text;
+  final Widget widget;
+  const MenuItem({
+    Key key,
+    this.value,
+    this.widget,
+    this.text,
+  }) : super(key: key);
+
+  @override
+  State<MenuItem> createState() => _MenuItemState();
+}
+
+class _MenuItemState extends State<MenuItem> {
+  @override
+  Widget build(BuildContext context) {
+    return widget.widget ?? Container();
+  }
+}
+
+class Block extends StatefulWidget {
+  const Block({Key key}) : super(key: key);
+
+  @override
+  State<Block> createState() => _BlockState();
+}
+
+class _BlockState extends State<Block> {
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'Block',
+    );
+  }
+}
+
+class Report extends StatefulWidget {
+  const Report({Key key}) : super(key: key);
+
+  @override
+  State<Report> createState() => _ReportState();
+}
+
+class _ReportState extends State<Report> {
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'Report',
     );
   }
 }

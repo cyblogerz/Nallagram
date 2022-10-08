@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../nav.dart';
 
@@ -18,6 +16,9 @@ const kMessageTextFieldDecoration = InputDecoration(
     prefixIcon: Icon(Icons.emoji_emotions_outlined),
     suffixIcon: Icon(Icons.camera_alt),
     hintText: 'Type a message',
+    hintStyle: TextStyle(
+      height: 1.5,
+    ),
     border: InputBorder.none);
 
 const kMessageContainerDecoration = BoxDecoration(
@@ -33,7 +34,6 @@ const kMessageContainerDecoration = BoxDecoration(
       bottomRight: Radius.circular(32),
       bottomLeft: Radius.circular(32)),
 );
-
 
 class CommentsPage extends StatefulWidget {
   static const String id = 'comment_screen';
@@ -77,7 +77,7 @@ class _CommentsPageState extends State<CommentsPage> {
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           color: Colors.black,
-          icon: Icon(Icons.arrow_back_outlined),
+          icon: Icon(CupertinoIcons.back),
         ),
         title: Text(
           'Comments',
@@ -129,13 +129,13 @@ class _CommentsPageState extends State<CommentsPage> {
                     //Implement send functionality.
                   },
                   child: CircleAvatar(
-                        child: Icon(
-                          Icons.send,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.purple,
-                        radius: 25,
-                      ),
+                    child: Icon(
+                      Icons.send,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: Colors.purple,
+                    radius: 25,
+                  ),
                 ),
               ],
             ),

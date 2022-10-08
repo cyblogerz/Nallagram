@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nallagram/screens/Profile/profile_upload.dart';
-import 'profile_upload.dart';
 
 final _auth = FirebaseAuth.instance;
 final _store = FirebaseFirestore.instance;

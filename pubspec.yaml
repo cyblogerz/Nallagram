@@ -21,6 +21,11 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  bloc: ^8.0.3
+  file_picker: ^4.5.1
+  path_provider: ^2.0.9
+  dropdown_button2: ^1.5.3
+  emoji_picker_flutter: ^1.4.0
   cached_network_image: ^3.1.0
   cloud_firestore: ^3.1.4
   cupertino_icons: ^1.0.2
