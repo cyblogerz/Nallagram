@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nallagram/firebase_options.dart';
 import 'package:nallagram/nav.dart';
 import 'package:nallagram/screens/Authenticate/login_screen.dart';
 import 'package:nallagram/screens/Chat/calls_chat.dart';
@@ -15,7 +16,9 @@ final _auth = FirebaseAuth.instance;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
