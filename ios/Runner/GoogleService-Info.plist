@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>243168622483-j2n9iso4qa9lmioou32pik9u431kl49g.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.243168622483-j2n9iso4qa9lmioou32pik9u431kl49g</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDwUlZTdnWEo4SS6ovnm8DU9ISg5g8lK1k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>243168622483</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.cyblogerz.nallagram</string>
+	<key>PROJECT_ID</key>
+	<string>nallagram-ac</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nallagram-ac.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:243168622483:ios:98911caf952c5700299a66</string>
+</dict>
+</plist>
