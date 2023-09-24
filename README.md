@@ -7,12 +7,9 @@ A Social media app  created with Flutter and Firebase.(inspired from instagram)
 
 
 
-## Show some ❤️ and star ⭐ the repo to support the project.
 
 
 
-## Note
-This repository is still under development and I will continue to add more features to it.
 
 ## Features
 
