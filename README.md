@@ -64,19 +64,6 @@ A Social media app  created with Flutter and Firebase.(inspired from instagram)
 
 
 
-# Upcoming Features
- -  Notificaitons for likes, comments, follows, etc
- -  Searching functionality
- -  Caching of Profiles, Images, Etc.
- -  Filters support for images
- -  Videos support
- -  Custom Camera Implementation
- -  Heart Animation when liking image
- -  Delete Posts
- -  Stories
- -  Send post to chats
- -  Blogging
- -  anonymous browsing
  
  <h1>Questions?🤔</h1>
  
@@ -84,10 +71,5 @@ A Social media app  created with Flutter and Firebase.(inspired from instagram)
  
 <a href="https://twitter.com/cyblogerz"><img src="https://user-images.githubusercontent.com/35039342/55471524-8e24cb00-5627-11e9-9389-58f3d4419153.png" width="60"></a>
 <a href="https://www.linkedin.com/in/pranavajay/"><img src="https://user-images.githubusercontent.com/35039342/55471530-94b34280-5627-11e9-8c0e-6fe86a8406d6.png" width="60"></a>
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate
 
 
